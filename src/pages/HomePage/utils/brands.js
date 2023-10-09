@@ -1,0 +1,1 @@
+export let brands=["kia" , "hyundai" , "toyota" , "nissan" , "mitsubishi" , "volkswagen" , "bmw" , "mercedes" , "renault"];

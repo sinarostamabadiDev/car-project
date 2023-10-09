@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { useFormik } from 'formik'
 import login from "../../assets/images/LoginPageImages/login.jpg"
 import * as Yup from 'yup';
@@ -12,22 +12,17 @@ import Countdown from 'react-countdown';
 import ReactCountdownClock from "react-countdown-clock"
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom'
+import { Timer } from './components/Timer';
 
 export default function LoginPage() {
     const [otp , setOtp]=useState("");
     const [update , setUpdate]=useState("");
+    const [status , setStatus]=useState(false);
+    const [resetCodeSent , setResetCodeSent]=useState(true);
 
-    Cookies.set("resetCodeSent ", true);
-    let resetCodeSent=Cookies.get("resetCodeSent ");
     const [isCodeSent , setIsCodeSent]=useState(false);
 
-    useEffect(() => {
-        Cookies.set("time" , String(60000));
-    } , [])
-
     let navigate=useNavigate();
-
-    let status=Cookies.get("status");
 
 
 
@@ -44,7 +39,10 @@ export default function LoginPage() {
                 if(response.status===200) {
                     toast.success("کد برای شما فرستاده شد")
                     Cookies.set("phoneNumber" , String(phoneNumber));
-                    Cookies.set("status" , true);
+                    // Cookies.set("status" , true);
+                    setStatus(true);
+                } else if(response.status!==200) {
+                    toast.error("خطایی رخ داده است")
                 }
             } else if(status) {
                 let phoneNumber=Cookies.get("phoneNumber");
@@ -97,17 +95,7 @@ export default function LoginPage() {
             };
 
 
-            async function sendAgain() {
-                let phoneNumber=Cookies.get("phoneNumber");
-                let response=await client.post("/api/core/getotp/" , {phone_number:phoneNumber});
-                if(response.status===200) {
-                    toast.success("کد برای شما فرستاده شد")
-                    Cookies.set("resetCodeSent" , false);
-                    resetCodeSent=Cookies.get("resetCodeSent");
-                    setUpdate("");
-                }
-            }
-
+            
 
   return (
     <div className='w-full h-screen grid grid-cols-1 lg:grid-cols-2 bg-white'>
@@ -135,28 +123,7 @@ export default function LoginPage() {
                         <PhoneNumberField phoneNumber={phoneNumber} handleChange={handleChange} handleBlur={handleBlur} errors={errors} />
                         }
                         {status && <div className='flex justify-center mt-2'>
-                            <Countdown
-                                date={Date.now() + +Cookies.get("time")}
-                                autoStart
-                                onComplete={() => {
-                                    resetCodeSent=Cookies.get("resetCodeSent");
-                                    Cookies.set("time" , 0);
-                                }}
-                                onTick={(props) => {
-                                    Cookies.set("time" , String(props.total))
-                                }}
-                                renderer={props => {
-                                    if(props.completed) {
-                                        if(resetCodeSent) {
-                                            return <div onClick={() => sendAgain()} className='text-base font-yekan text-green-600 cursor-pointer'>ارسال دوباره کد</div>
-                                        }
-                                    }
-                                    if(resetCodeSent) {
-                                        return <div className='text-sm font-roboto'>0{props.minutes}:{props.seconds}</div>
-                                    }
-                                }
-                                }
-                            />
+                            <Timer />
                         </div>}
                     </div>    
                     <button type='submit' className='px-4 py-2 rounded-lg text-white font-yekan bg-main_blue mt-10'>{status ? "تایید" : "دریافت کد"}</button>
