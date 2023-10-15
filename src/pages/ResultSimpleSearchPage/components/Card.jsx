@@ -15,6 +15,7 @@ import {
     ModalCloseButton,
   } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
+import { Skeleton } from '@mui/material'
 
 export default function Card({milage , model , price , image}) {
 
@@ -49,8 +50,11 @@ export default function Card({milage , model , price , image}) {
   return (
     <>
         <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-        <a href="#">
-            <img class="rounded-t-lg" src={image} alt="" />
+        <a>
+            {image ? <img class="rounded-t-lg" src={image} alt="" /> :
+                <Skeleton variant="rectangular" width={200} height={200} />
+             }
+            
         </a>
         <div class="p-5">
             <div className='w-full flex justify-between items-center'>

@@ -12,7 +12,8 @@ export default {
       },
       colors:{
         main_blue:"#4361EE",
-        main_red:"#e63946"
+        main_red:"#e63946",
+        main_gray:"#313131"
       }
     },
   },

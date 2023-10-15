@@ -32,16 +32,15 @@ export default function AdvanceSearch() {
     console.log(values);
 
   return (
-        <div className="advance-search w-full flex justify-center mt-14"> 
+        <div className="advance-search w-full flex justify-center"> 
         <div className='w-full flex flex-col items-center'>                 
             <div className="title flex justify-center">
                 <p className='text-3xl font-yekan text-gray-900'>جستجو پیشرفته</p>
             </div>
-            <form onSubmit={handleSubmit} action="" className='w-[650px] min-w-[250px] grid grid-cols-1 px-8 sm:grid-cols-2 sm:px-0 gap-4 mt-8 place-items-center'>
-
+            <form onSubmit={handleSubmit} action="" className='w-full min-w-[250px] flex flex-col px-8 sm:px-0 gap-4 place-items-center mt-6'>
                 <div className='w-full max-w-[300px] text-right'>
                     <label htmlFor="brand" className='text-sm font-yekan mb-1 block'>برند خودرو</label>
-                    <select className='w-full h-10 bg-white border border-gray-200 rounded-md px-1 text-base capitalize font-semibold'
+                    <select className='w-full h-10 bg-white rounded-md px-1 text-base capitalize font-semibold'
                     value={values.brand}
                     onChange={handleChange}
                      name="brand" id="brand">
@@ -54,7 +53,7 @@ export default function AdvanceSearch() {
 
                 <div className='w-full max-w-[300px] text-right'>
                     <label htmlFor="name" className='text-sm font-yekan block mb-1'>نام خودرو</label>
-                    <input type="text" className='w-full h-10 bg-white border border-gray-200 rounded-md px-1 text-base capitalize font-semibold'
+                    <input type="text" className='w-full h-10 bg-white rounded-md px-1 text-base capitalize font-semibold'
                     value={values.name}
                     onChange={handleChange}
                     name="name" id="name"
@@ -85,7 +84,7 @@ export default function AdvanceSearch() {
                     <div style={{direction:"rtl"}} className='text-sm font-yekan'>از {values.milage[0]*3000+" کیلومتر "} تا {values.milage[1]*3000+" کیلومتر "}</div>
                 </div>
                 <div className='w-full col-span-2 flex justify-center mt-2'>
-                    <button type='submit' className='px-6 py-2 rounded-xl bg-main_blue font-yekan text-white'>جستجو</button>
+                    <button type='submit' className='px-20 py-2 rounded-xl bg-main_gray font-yekan text-white'>جستجو</button>
                 </div>
             </form>      
         </div>

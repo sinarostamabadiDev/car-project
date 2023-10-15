@@ -8,6 +8,8 @@ import ResultSimplePageSearch from './pages/ResultSimpleSearchPage/ResultSimpleP
 import CarsModel from './pages/Cars/CarsModel'
 import Cookies from 'js-cookie'
 import ResultAdvanceSearchPage from './pages/ResultAdvanceSearchPage/ResultAdvanceSearchPage'
+import About from './pages/About/About'
+import Concat from './pages/Concat/Concat'
 
 export default function App() {
   let navigate=useNavigate();
@@ -28,6 +30,8 @@ export default function App() {
       <Route path='/simple-search/:slug' element={<ResultSimplePageSearch />} />
       <Route path='/cars/:slug' element={<CarsModel />} />
       <Route path='advance-search' element={<ResultAdvanceSearchPage />} />
+      <Route path='/about' element={<About />} />
+      <Route path='/concat' element={<Concat />} />
     </Routes>
   )
 }

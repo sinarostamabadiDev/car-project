@@ -20,7 +20,7 @@ export let Timer=memo(function Timer({resetCodeSent}) {
     return ( 
     <>
     <Countdown
-                                date={Date.now() + 10000}
+                                date={Date.now() + 120000}
                                 autoStart={true}
                                 // onComplete={() => {
                                 //     resetCodeSent=Cookies.get("resetCodeSent");

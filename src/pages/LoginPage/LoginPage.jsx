@@ -13,12 +13,16 @@ import ReactCountdownClock from "react-countdown-clock"
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom'
 import { Timer } from './components/Timer';
+import { CircularProgress } from '@mui/material';
+import { AiOutlineLoading3Quarters } from "react-icons/ai"
+
 
 export default function LoginPage() {
     const [otp , setOtp]=useState("");
     const [update , setUpdate]=useState("");
     const [status , setStatus]=useState(false);
     const [resetCodeSent , setResetCodeSent]=useState(true);
+    const [loading , setLoading]=useState(false);
 
     const [isCodeSent , setIsCodeSent]=useState(false);
 
@@ -35,10 +39,12 @@ export default function LoginPage() {
         },
         onSubmit:async (values) => {
             if(!status) {
+                setLoading(true);
                 let response=await client.post("/api/core/getotp/" , {phone_number:values.phoneNumber});
                 if(response.status===200) {
                     toast.success("کد برای شما فرستاده شد")
                     Cookies.set("phoneNumber" , String(phoneNumber));
+                    setLoading(false);
                     // Cookies.set("status" , true);
                     setStatus(true);
                 } else if(response.status!==200) {
@@ -100,7 +106,7 @@ export default function LoginPage() {
   return (
     <div className='w-full h-screen grid grid-cols-1 lg:grid-cols-2 bg-white'>
         <div className="right-login w-full h-full flex justify-center items-center bg-main_blue">
-            <form action="" onSubmit={handleSubmit} className='w-4/5 max-w-[380px] h-3/5 lg:h-4/5 flex flex-col justify-between rounded-xl shadow-2xl text-center px-4 py-8 bg-white'>
+            <form action="" onSubmit={handleSubmit} className='w-4/5 max-w-[380px] h-[450px] lg:h-4/5 flex flex-col justify-between rounded-xl shadow-2xl text-center px-4 py-8 bg-white'>
                 <div>
                     <div className="title text-4xl font font-semibold font-yekan">
                         ورود
@@ -108,12 +114,12 @@ export default function LoginPage() {
                     <div className='text-xl font-medium font-yekan mt-4'>
                         ماشین خودتو انتخاب کن
                     </div>
-                    <div className='text-lg font-semibold font-yekan mt-10'>
+                    <div className='text-lg font-semibold font-yekan'>
                         پلتفرم جستجوی هوشمند خودرو در جهان
                     </div>
                 </div>
 
-                <div className='w-full text-center'>
+                <div className='w-full text-center mt-10 md:mt-0'>
                     <div className="input w-full flex flex-col text-right">
                         {status ? 
                         <div className='w-full flex justify-center'>
@@ -126,7 +132,7 @@ export default function LoginPage() {
                             <Timer />
                         </div>}
                     </div>    
-                    <button type='submit' className='px-4 py-2 rounded-lg text-white font-yekan bg-main_blue mt-10'>{status ? "تایید" : "دریافت کد"}</button>
+                    <button type='submit' disabled={loading} className='px-4 py-2 rounded-lg text-white font-yekan bg-main_blue mt-10'>{loading ? <AiOutlineLoading3Quarters /> : status ? "تایید" : "دریافت کد" }</button>
                 </div>
             </form>
         </div>
