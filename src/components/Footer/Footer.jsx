@@ -32,8 +32,16 @@ export default function Footer() {
             <div>قوانین خرید خودرو</div>
         </div>
         <div className='w-full flex lg:flex-col justify-center gap-10'>
-            <div>ارتباط با ما</div>
-            <div>تماس با ما</div>
+            <div>
+                <Link to={"/concat"}>
+                    ارتباط با ما
+                </Link>
+            </div>
+            <div>
+                <Link to={"/about"}>
+                    درباره ی ما
+                </Link>
+                </div>
         </div>
     </div>
     <div className='w-full bg-main_gray flex gap-2'>

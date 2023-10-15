@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useLayoutEffect } from 'react'
 import "./index.css"
 import "./assets/fonts/yekanFont/yekan.css"
-import { Route, Routes, useNavigate } from 'react-router-dom'
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import LoginPage from './pages/LoginPage/LoginPage'
 import HomePage from './pages/HomePage/HomePage'
 import ResultSimplePageSearch from './pages/ResultSimpleSearchPage/ResultSimplePageSearch'
@@ -12,6 +12,10 @@ import About from './pages/About/About'
 import Concat from './pages/Concat/Concat'
 
 export default function App() {
+  const location = useLocation();
+  useLayoutEffect(() => {
+    document.documentElement.scrollTo(0, 0);
+  }, [location.pathname]);
   let navigate=useNavigate();
 
 
