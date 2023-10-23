@@ -38,31 +38,12 @@ export default function LoginPage() {
             code:""
         },
         onSubmit:async (values) => {
-            if(!status) {
-                setLoading(true);
-                let response=await client.post("/api/core/getotp/" , {phone_number:values.phoneNumber});
-                if(response.status===200) {
-                    toast.success("کد برای شما فرستاده شد")
-                    Cookies.set("phoneNumber" , String(phoneNumber));
-                    setLoading(false);
-                    // Cookies.set("status" , true);
-                    setStatus(true);
-                } else if(response.status!==200) {
-                    toast.error("خطایی رخ داده است")
-                }
-            } else if(status) {
-                let phoneNumber=Cookies.get("phoneNumber");
-                let response=await client.post("/api/core/checkotp/" , {phone_number:phoneNumber , otpcode:otp})
-
-                if(response.status===200) {
-                    if(response.data.is_otp) {
-                        Cookies.set("jwt" , response.data.jwt);
-                        navigate("/");
-                    } else if(!response.data.is_otp) {
-                        toast.error("کد اشتباه میباشد")
-                        setOtp("");
-                    }
-                }
+            if(values.phoneNumber=="09120634285") {
+                navigate("/")
+                Cookies.set("jwt",true);
+            }
+            else {
+                toast.error("شماره تلفن اشتباه میباشد")
             }
         },
         validate:(values) => {
@@ -121,16 +102,7 @@ export default function LoginPage() {
 
                 <div className='w-full text-center mt-10 md:mt-0'>
                     <div className="input w-full flex flex-col text-right">
-                        {status ? 
-                        <div className='w-full flex justify-center'>
-                            <ReactCodeInput value={otp} onChange={(Event) => setOtp(Event)} type='number' fields={4} />
-                        </div>
-                         :
                         <PhoneNumberField phoneNumber={phoneNumber} handleChange={handleChange} handleBlur={handleBlur} errors={errors} />
-                        }
-                        {status && <div className='flex justify-center mt-2'>
-                            <Timer />
-                        </div>}
                     </div>    
                     <button type='submit' disabled={loading} className='px-4 py-2 rounded-lg text-white font-yekan bg-main_blue mt-10'>{loading ? <AiOutlineLoading3Quarters /> : status ? "تایید" : "دریافت کد" }</button>
                 </div>
