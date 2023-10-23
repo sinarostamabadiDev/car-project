@@ -38,7 +38,7 @@ export default function LoginPage() {
             code:""
         },
         onSubmit:async (values) => {
-            if(values.phoneNumber=="09120634285") {
+            if(values.phoneNumber=="09125866638") {
                 navigate("/")
                 Cookies.set("jwt",true);
             }
@@ -104,7 +104,7 @@ export default function LoginPage() {
                     <div className="input w-full flex flex-col text-right">
                         <PhoneNumberField phoneNumber={phoneNumber} handleChange={handleChange} handleBlur={handleBlur} errors={errors} />
                     </div>    
-                    <button type='submit' disabled={loading} className='px-4 py-2 rounded-lg text-white font-yekan bg-main_blue mt-10'>{loading ? <AiOutlineLoading3Quarters /> : status ? "تایید" : "دریافت کد" }</button>
+                    <button type='submit' disabled={loading} className='px-4 py-2 rounded-lg text-white font-yekan bg-main_blue mt-10'>ورود</button>
                 </div>
             </form>
         </div>
