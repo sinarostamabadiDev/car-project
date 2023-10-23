@@ -13,21 +13,7 @@ export default function About() {
                 <div style={{direction:"rtl"}} className='max-w-[500px] hidden md:block'>
                     <div className='text-2xl md:text-3xl lg:text-4xl xl:text-5xl'>درباره ی ما</div>
                     <div className='text-sm md:text-base lg:text-lg mt-2 lg:mt-4'>
-                        متن ساختگی
-                        متن ساختگی
-                        متن ساختگی
-                        متن ساختگی
-                        متن ساختگی
-                        متن ساختگی
-                        متن ساختگی
-                        متن ساختگی
-                        متن ساختگی
-                        متن ساختگی
-                        متن ساختگی
-                        متن ساختگی
-                        متن ساختگی
-                        متن ساختگی
-                        متن ساختگی
+                        کارینتو یک پلتفرم هوشمند انتخاب و خرید خودرو کارکرده از سراسر جهان می باشد
                     </div>
                 </div>
             </div>

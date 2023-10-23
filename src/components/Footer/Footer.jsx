@@ -9,22 +9,7 @@ export default function Footer() {
     <>
         <div className='w-full bg-main_gray p-4 lg:p-8 flex flex-col lg:flex-row-reverse text-center text-white font-yekan gap-4'>
         <div className='w-full border-b border-gray-200 lg:border-l-2 lg:border-b-0 pb-4 lg:pl-20'>
-            متن ساختگی
-            متن ساختگی
-            متن ساختگی
-            متن ساختگی
-            متن ساختگی
-            متن ساختگی
-            متن ساختگی
-            متن ساختگی
-            متن ساختگی
-            متن ساختگی
-            متن ساختگی
-            متن ساختگی
-            متن ساختگی
-            متن ساختگی
-            متن ساختگی
-            متن ساختگی
+            
         </div>
         <div className='w-full flex lg:flex-col justify-between text-sm border-b border-gray-200 lg:border-l-2 lg:border-b-0 pb-4'>
             <div>ارتباط با مدیریت</div>
@@ -44,7 +29,7 @@ export default function Footer() {
                 </div>
         </div>
     </div>
-    <div className='w-full bg-main_gray flex gap-2'>
+    <div className='w-full bg-main_gray flex gap-2 p-2'>
         <a className='p-2 blocks text-black'><BiLogoTelegram className='w-7 h-7 text-white' /></a>
         <a className='p-2 blocks text-black'><BsInstagram className='w-7 h-7 text-white' /></a>
         <a className='p-2 blocks text-black'><AiFillLinkedin className='w-7 h-7 text-white' /></a>

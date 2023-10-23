@@ -22,7 +22,8 @@ export default function ResultAdvanceSearchPage() {
                 minprice:searchParams.get("price").split(",")[0]*100000000,
                 maxprice:searchParams.get("price").split(",")[1]*100000000,
                 minmilage:searchParams.get("milage").split(",")[0]*3000,
-                maxmilage:searchParams.get("milage").split(",")[1]*3000
+                maxmilage:searchParams.get("milage").split(",")[1]*3000,
+                motor:searchParams.get("motor")
             }})
 
             if(response.status===200) {

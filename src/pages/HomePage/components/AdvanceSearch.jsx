@@ -13,7 +13,8 @@ export default function AdvanceSearch() {
         name:"",
         brand:"kia",
         price:[0,100],
-        milage:[0,100]
+        milage:[0,100],
+        motor:"1.5"
     })
 
     function handleChange(event) {
@@ -26,7 +27,7 @@ export default function AdvanceSearch() {
     function handleSubmit(event) {
         event.preventDefault();
 
-        navigate(`/advance-search/?name=${values.name}&brand=${values.brand}&price=${values.price}&milage=${values.milage}`)
+        navigate(`/advance-search/?name=${values.name}&brand=${values.brand}&price=${values.price}&milage=${values.milage}&motor=${values.motor}`)
     }
 
     console.log(values);
@@ -61,6 +62,17 @@ export default function AdvanceSearch() {
                 </div>
 
                 <div className='w-full max-w-[300px] text-right'>
+                    <label htmlFor="motor" className='text-sm font-yekan block mb-1'>حجم موتور</label>
+                    <select className='w-full h-10 bg-white rounded-md px-1 text-base capitalize font-semibold' onChange={handleChange} value={values.motor} name="motor" id="motor">
+                        <option style={{direction:"rtl"}} value="1.5">1-1.5</option>
+                        <option style={{direction:"rtl"}} value="2">1.5-2</option>
+                        <option style={{direction:"rtl"}} value="2.5">2-2.5</option>
+                        <option style={{direction:"rtl"}} value="3">2.5-3</option>
+                        <option style={{direction:"rtl"}} value="4">بالای 3</option>
+                    </select>
+                </div>
+
+                <div className='w-full max-w-[300px] text-right'>
                     <label htmlFor="brand" className='text-sm font-yekan block mb-1'>برند خودرو</label>
                     <RangeSlider value={values.price} onChange={(Event) => setValues({...values , price:Event})} aria-label={['min', 'max']} defaultValue={[10, 30]}>
                         <RangeSliderTrack>
@@ -69,7 +81,7 @@ export default function AdvanceSearch() {
                         <RangeSliderThumb index={0} />
                         <RangeSliderThumb index={1} />
                     </RangeSlider>
-                    <div style={{direction:"rtl"}} className='text-sm font-yekan'>از {values.price[0]*100000000+" تومان "} تا {values.price[1]*100000000+" تومان "}</div>
+                    <div style={{direction:"rtl"}} className='text-sm font-yekan'>از {Number(values.price[0]*100000000).toLocaleString()+" تومان "} تا {Number(values.price[1]*100000000).toLocaleString()+" تومان "}</div>
                 </div>
 
                 <div className='w-full max-w-[300px] text-right'>
@@ -81,7 +93,7 @@ export default function AdvanceSearch() {
                         <RangeSliderThumb index={0} />
                         <RangeSliderThumb index={1} />
                     </RangeSlider>
-                    <div style={{direction:"rtl"}} className='text-sm font-yekan'>از {values.milage[0]*3000+" کیلومتر "} تا {values.milage[1]*3000+" کیلومتر "}</div>
+                    <div style={{direction:"rtl"}} className='text-sm font-yekan'>از {Number(values.milage[0]*3000).toLocaleString()+" کیلومتر "} تا {Number(values.milage[1]*3000).toLocaleString()+" کیلومتر "}</div>
                 </div>
                 <div className='w-full col-span-2 flex justify-center mt-2'>
                     <button type='submit' className='px-20 py-2 rounded-xl bg-main_gray font-yekan text-white'>جستجو</button>

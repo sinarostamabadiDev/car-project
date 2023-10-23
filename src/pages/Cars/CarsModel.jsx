@@ -32,7 +32,9 @@ export default function CarsModel() {
         <div>
             <div className='w-full py-10 flex flex-wrap justify-center gap-6'>
                 {data && data.cars.map((car) => {
-                    return <Card {...car} />
+                    if(car.price!==0) {
+                        return <Card {...car} />
+                    }
                 })}
             </div>
         </div>

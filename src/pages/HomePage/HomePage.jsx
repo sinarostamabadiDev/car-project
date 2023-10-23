@@ -13,7 +13,7 @@ import { SiKia , SiHyundai , SiToyota , SiNissan , SiMitsubishi , SiVolkswagen ,
 import CategoryItem from './components/CategoryItem';
 import toast, { Toaster } from 'react-hot-toast';
 import AdvanceSearch from './components/AdvanceSearch';
-import car from "../../assets/images/car.jpg"
+import car from "../../assets/images/car.png"
 import { BiSearch } from "react-icons/bi"
 import benz from "../../assets/images/benz.png"
 import Carousel from "react-multi-carousel";
@@ -171,9 +171,11 @@ export default function HomePage() {
                             itemClass="carousel-item-padding-40-px"
                         >
                             {data ? data.cars.map((car) => {
-                                return <div className='p-4 mb-4'>
-                                    <Card {...car} />
-                                </div>
+                                if(car.price!=="0") {
+                                    return <div className='p-4 mb-4'>
+                                        <Card {...car} />
+                                    </div>
+                                }
                             }) : <div></div>}
                          </Carousel>
                         </div>
@@ -202,10 +204,12 @@ export default function HomePage() {
                             dotListClass="custom-dot-list-style"
                             itemClass="carousel-item-padding-40-px"
                         >
-                            {data ? data.cars.map((car) => {
-                                return <div className='p-4 mb-4'>
-                                    <Card {...car} />
-                                </div>
+                            {data ? data.cars.map((car) => { 
+                                if(car.price!=="0") {
+                                    return <div className='p-4 mb-4'>
+                                        <Card {...car} />
+                                    </div>
+                                }
                             }) : <div></div>}
                          </Carousel>
                         </div>
